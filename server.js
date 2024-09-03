@@ -19,7 +19,7 @@ app.options('*', cors())
 //configure routes
 const router = express.Router()
 router.get('/', (request, response) => {
-    res.send(`${db}`)
+    response.send(`${db.name}`)
 })
 
 //register routes
