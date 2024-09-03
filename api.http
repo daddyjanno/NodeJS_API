@@ -13,3 +13,7 @@ Content-Type: application/json
     "tagline": "la piu bella",
     "price": 200
 }
+
+###
+
+GET http://localhost:5000/api/photographers
