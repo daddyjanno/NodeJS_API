@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 //our sample database
 const dbConnection = require('./database/connection')
+dbConnection()
 
 const PORT = process.env.PORT || 5000
 const apiRoot = '/api'
@@ -28,15 +29,15 @@ const router = express.Router()
 //     res.send(`${db.name}`)
 // })
 
-// router.get('/photographers/', (req, res) => {
-//     const photographersList = fetch('mongodb://127.0.0.1/FishEye/photographers')
+router.get('/photographers/', (req, res) => {
+    const photographersList = fetch('mongodb://127.0.0.1/FishEye/photographers')
 
-//     if (!photographersList) {
-//         return res.status(404).json({ error: 'No data for photographers' })
-//     }
+    if (!photographersList) {
+        return res.status(404).json({ error: 'No data for photographers' })
+    }
 
-//     return res.json(photographersList)
-// })
+    return res.json(photographersList)
+})
 
 // router.get('/photographers/:id', (req, res) => {
 //     const user = req.params.id
