@@ -1,28 +1,30 @@
-const { MongoClient } = require('mongodb')
+const sqlite3 = require('sqlite3').verbose()
 
-async function main() {
-    const uri =
-        'mongodb+srv://daddyjanno:watchano@cluster0.guoaa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-
-    const client = new MongoClient(uri)
-
-    try {
-        await client.connect()
-        await listDatabases(client)
-    } catch (error) {
-        console.error(error)
-    } finally {
-        await client.close()
+// open the database
+let db = new sqlite3.Database('./db/FishEye.db', sqlite3.OPEN_CREATE, (err) => {
+    if (err) {
+        console.error(err.message)
     }
-}
+    console.log('Connected to the FishEye database.')
+})
 
-main().catch(console.error())
+// db.serialize(() => {
+//     db.each(
+//         `SELECT PlaylistId as id,
+//                   Name as name
+//            FROM playlists`,
+//         (err, row) => {
+//             if (err) {
+//                 console.error(err.message)
+//             }
+//             console.log(row.id + '\t' + row.name)
+//         }
+//     )
+// })
 
-async function listDatabases(client) {
-    const databasesList = await client.db().admin().listDatabases()
-
-    console.log('Databases:')
-    databasesList.databases.forEach((db) => {
-        console.log(`- ${db.name}`)
-    })
-}
+db.close((err) => {
+    if (err) {
+        console.error(err.message)
+    }
+    console.log('Close the database connection.')
+})
