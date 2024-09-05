@@ -7,23 +7,6 @@ const bodyParser = require('body-parser')
 const dbConnection = require('./database/connection')
 dbConnection()
 
-async function main() {
-    const uri =
-        'mongodb+srv://daddyjanno:watchano@cluster0.guoaa.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-
-    const client = new MongoClient(uri)
-
-    try {
-        await client.connect()
-    } catch (error) {
-        console.error(error)
-    } finally {
-        await client.close()
-    }
-}
-
-main().catch(console.error())
-
 const PORT = process.env.PORT || 5000
 const apiRoot = '/api'
 
