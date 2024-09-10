@@ -2,7 +2,7 @@
     "name": "nodejs_api",
     "version": "1.0.0",
     "description": "A sample API to deal with photographers data",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "nodemon ./server/server.js",
@@ -11,13 +11,9 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "axios": "^1.7.7",
         "body-parser": "^1.20.2",
         "cors": "^2.8.5",
-        "express": "^4.19.2",
-        "mongodb": "^6.8.0",
-        "mongoose": "^8.6.1",
-        "sqlite3": "^5.1.7"
+        "express": "^4.19.2"
     },
     "devDependencies": {
         "nodemon": "^3.1.4"
