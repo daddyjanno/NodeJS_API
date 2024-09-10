@@ -42,6 +42,17 @@ router.get('/photographers/:id', (req, res) => {
     return res.json(photographer)
 })
 
+router.get('/photographers/:id/medias', (req, res) => {
+    const user = req.params.id
+    const medias = db.media.filter((el) => el.photographerId === Number(user))
+
+    if (!medias) {
+        return res.status(404).json({ error: 'No medias', medias })
+    }
+
+    return res.json(medias)
+})
+
 //register routes
 app.use(apiRoot, router)
 app.listen(port, () => {
