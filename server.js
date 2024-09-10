@@ -16,7 +16,7 @@ app.options('*', cors())
 //configure routes
 const router = express.Router()
 router.get('/', (req, res) => {
-    res.send(`${db.name}`)
+    res.send(db)
 })
 
 router.get('/photographers/', (req, res) => {
