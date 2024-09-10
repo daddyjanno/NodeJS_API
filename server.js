@@ -1,34 +1,26 @@
-const sqlite3 = require('sqlite3').verbose()
-
-// open the database
-let db = new sqlite3.Database(
-    './db/FishEye.db',
-    sqlite3.OPEN_READWRITE,
-    (err) => {
-        if (err) {
-            console.error(err.message)
-        }
-        console.log('Connected to the FishEye database.')
-    }
+const express = require('express')
+const cors = require('cors')
+const bodyParser = require('body-parser')
+const db = require('./data/photographers.js')
+const port = process.env.PORT || 5000
+const apiRoot = '/api'
+const app = express()
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(
+    cors({
+        origin: /http:\/\/localhost/,
+    })
 )
+app.options('*', cors())
+//configure routes
+const router = express.Router()
+router.get('/', (request, response) => {
+    response.send(`${db.name}`)
+})
 
-// db.serialize(() => {
-//     db.each(
-//         `SELECT PlaylistId as id,
-//                   Name as name
-//            FROM playlists`,
-//         (err, row) => {
-//             if (err) {
-//                 console.error(err.message)
-//             }
-//             console.log(row.id + '\t' + row.name)
-//         }
-//     )
-// })
-
-db.close((err) => {
-    if (err) {
-        console.error(err.message)
-    }
-    console.log('Close the database connection.')
+//register routes
+app.use(apiRoot, router)
+app.listen(port, () => {
+    console.log('Server is up')
 })
