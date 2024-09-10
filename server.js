@@ -15,8 +15,31 @@ app.use(
 app.options('*', cors())
 //configure routes
 const router = express.Router()
-router.get('/', (request, response) => {
-    response.send(`${db.name}`)
+router.get('/', (req, res) => {
+    res.send(`${db.name}`)
+})
+
+router.get('/photographers/', (req, res) => {
+    const photographersList = db.photographers
+
+    if (!photographersList) {
+        return res.status(404).json({ error: 'No data for photographers' })
+    }
+
+    return res.json(photographersList)
+})
+
+router.get('/photographers/:id', (req, res) => {
+    const user = req.params.id
+    const photographer = db.photographers.find((el) => el.id === Number(user))
+
+    if (!photographer) {
+        return res
+            .status(404)
+            .json({ error: 'Photographer does not exist', photographer })
+    }
+
+    return res.json(photographer)
 })
 
 //register routes
