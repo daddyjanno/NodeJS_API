@@ -1,19 +1,19 @@
-GET http://localhost:5000/api/photographers/23
+GET http://localhost:5000/api/
 
 ###
 
-POST http://localhost:5000/api/photographers
-Content-Type: application/json
+# POST http://localhost:5000/api/photographers
+# Content-Type: application/json
 
-{
-    "name": "Test user",
-    "id": 23,
-    "city": "Roma",
-    "country": "Italy",
-    "tagline": "la piu bella",
-    "price": 200
-}
+# {
+#     "name": "Test user",
+#     "id": 23,
+#     "city": "Roma",
+#     "country": "Italy",
+#     "tagline": "la piu bella",
+#     "price": 200
+# }
 
-###
+##
 
-GET http://localhost:5000/api/photographers
+GET http://localhost:5000/api/photographers/195
