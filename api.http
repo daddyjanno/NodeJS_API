@@ -2,6 +2,10 @@ GET http://localhost:5000/api/
 
 ###
 
+GET http://localhost:5000/api/photographers
+
+###
+
 GET http://localhost:5000/api/photographers/195
 
 ###
